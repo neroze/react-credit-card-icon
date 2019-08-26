@@ -1,7 +1,7 @@
 import * as React from "react";
 
-const Icons = (name = "") => {
-  const list = {
+const Icons = (name = "", icons = {}) => {
+  let list = {
     visa: "https://img.icons8.com/color/48/000000/visa.png",
     americanExpress: "https://img.icons8.com/color/48/000000/amex.png",
     master:
@@ -11,6 +11,7 @@ const Icons = (name = "") => {
     jcb: "https://img.icons8.com/officel/48/000000/jcb.png",
     unipay: "https://img.icons8.com/color/48/000000/visa.png"
   };
+  list = Object.assign(list, icons);
   const type = list[name];
   return {
     Img: () => <img title={name} alt={name} src={type} />,
@@ -20,9 +21,10 @@ const Icons = (name = "") => {
 
 interface CardNumber {
   cardNumber: string;
+  icons?: Object;
 }
 
-const CardType: React.SFC<CardNumber> = ({ cardNumber }) => {
+export const CardType: React.SFC<CardNumber> = ({ cardNumber, icons = {} }) => {
   const master =
     "((?=55)(^55)[0-9]{2,16}|(?=22)(^22)[0-9]{2,16}|(?=52)(^52)[0-9]{2,16}|(?=51)(^52)[0-9]{2,16})";
   const visa = "((?=4)(^4)[0-9]{2,16}|(?=42)(^42)[0-9]{2,16})";
@@ -45,7 +47,7 @@ const CardType: React.SFC<CardNumber> = ({ cardNumber }) => {
     return String(cardNumber).match(item[1]) ? true : false;
   });
 
-  const { Img } = Icons(_cardType[0][0]);
+  const { Img } = Icons(_cardType[0][0], icons);
 
   return (
     <>
