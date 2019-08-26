@@ -7,7 +7,7 @@ import "./styles.css";
 function App() {
   return (
     <div className="App">
-      <h1>Stripe Card Number with flags</h1>
+      <h1>Cards</h1>
       <IconType cardNumber="4242424242424242" />
       <IconType cardNumber="2255555555554444" />
       <IconType cardNumber="378282246310005" />
